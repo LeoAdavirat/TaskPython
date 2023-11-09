@@ -12,40 +12,40 @@
 #         A = self.A
 #         B = self.B
 def if_then(A, B):
-    if A == 1 and B == 0:
-        return 0
+    if A == "1" and B == "0":
+        return "0"
     else:
-        return 1
+        return "1"
 
 def equivalent(A, B):
     if A == B:
-        return 1
+        return "1"
     else:
-        return 0
+        return "0"
 
 def and_pro(A, B):
-    if A == B and A == 1:
-        return 1
+    if A == "1" and B == "1":
+        return "1"
     else:
-        return 0
+        return "0"
 
 def ior(A, B):
-    if A == 1 or B == 1:
-        return 1
+    if A == "1" or B == "1":
+        return "1"
     else:
-        return 0
+        return "0"
 
 def xor(A, B):
-    if (A == 0 or B == 1) and (A == 1 or B == 0):
-        return 1
+    if (A == "0" or B == "1") and (A == "1" or B == "0"):
+        return "1"
     else:
-        return 0
+        return "0"
 
 def negate(A):
-    if A == 1:
-        return 0
+    if A == "1":
+        return "0"
     else:
-        return 1
+        return "1"
     
 def addition(A, B):
     C = []
@@ -54,12 +54,12 @@ def addition(A, B):
             C.append(i + j)
     return C
 
-def gen_table(variables = 2):
+def gen_table(variables = "2"):
     A = ["1", "0"]
     C = [""]
     for i in range(variables):
         C = addition(C, A)
-    return [[int(i) for i in li] for li in C]
+    return [[i for i in li] for li in C]
 
 # if_then = it
 it = if_then
@@ -71,3 +71,4 @@ And = and_pro
 # xor = xor
 # negate = ne
 ne = negate
+

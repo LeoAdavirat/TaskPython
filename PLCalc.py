@@ -10,6 +10,14 @@ def showit():
         print(A[i] + [Ans[i]])
 
 for i in range(len(A)):
+    a=A[i][0]
+    b=A[i][1]
+    Ans.append(
+        ior(a,And(a, b))
+    )
+
+
+for i in range(len(A)):
     Ans.append(
         ior(A[0], And(A[0], A[1]))
     )
