@@ -10014,3 +10014,8 @@ my_words = json.load(
         "10000EnglishWords.json",
     )
 )["word"]
+
+import random
+
+aRandomWord = random.choice(my_words)
+print(aRandomWord)
