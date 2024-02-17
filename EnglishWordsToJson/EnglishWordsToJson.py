@@ -10008,3 +10008,9 @@ import json
 json_object = json.dumps(allWords, indent=4)
 with open("10000EnglishWords.json", "w") as outfile:
     outfile.write(json_object)
+
+my_words = json.load(
+    open(
+        "10000EnglishWords.json",
+    )
+)["word"]
