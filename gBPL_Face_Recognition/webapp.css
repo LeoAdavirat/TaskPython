@@ -1,0 +1,84 @@
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+nav {
+  background-color: #0d7377;
+  width: 100dvw;
+  height: 10dvh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+div#logo {
+  color: white;
+  padding: 5% 5%;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+p {
+  background-color: white;
+}
+/* webapp.css */
+
+/* Reset default margin and padding */
+body,
+h1,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a nice font for the entire app */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Style the navigation bar */
+nav {
+  background-color: #0074d9;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+#logo {
+  font-size: 1.5rem;
+}
+
+/* Style the main content */
+p {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/* Highlight important information */
+b {
+  color: #ff4136;
+}
+
+/* Style the button */
+#CamButton {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  background-color: #ff851b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Make the button responsive */
+@media screen and (max-width: 600px) {
+  button {
+    font-size: 0.8rem;
+  }
+}
