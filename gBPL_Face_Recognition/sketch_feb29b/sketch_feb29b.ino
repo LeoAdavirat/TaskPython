@@ -13,7 +13,7 @@ const int buttonReset = A3; // Pin for the button to reset the timer
 int hours = 0;
 int minutes = 0;
 int seconds = 0;
-long int second = 4000;
+long int second = 300000;
 
 int initialHours = 0; // Store initial countdown hours
 int initialMinutes = 0; // Store initial countdown minutes
@@ -22,6 +22,9 @@ int previousMillis = 0;
 
 bool startPressed = false; // Flag to track if the start button has been pressed
 bool timerFinished = false; // Flag to indicate if the timer has finished
+int displayMode = 0; //0 1
+// 0 display the timer to configure
+// 1 start the timer
 
 // Pin definitions
 const int buttonPin = 2;
@@ -43,7 +46,7 @@ unsigned long lastButtonPressTime = 0;
 
 bool motorRan = false; // Flag to track if the motor has run
 
-
+int timerSecond = 300000;
 
 void runStepperMotor() {
   
@@ -69,8 +72,9 @@ void runStepperMotor() {
   delay(500); // Adjust as needed
 }
 
-void displayTime() {
-  lcd.clear();
+void displayTime(int second) {
+  if (second >= 0) {
+    lcd.clear();
   lcd.setCursor(0,0);
   int tempSecond = second/1000;
   int displayHour = tempSecond / 3600;
@@ -78,6 +82,7 @@ void displayTime() {
   int displaySecond = tempSecond - displayHour * 3600 - displayMinute * 60;
   lcd.print("Time: " + String(displayHour) + ":" + String(displayMinute) +  ":" + String(displaySecond));
   Serial.println("Time: " + String(displayHour) + ":" + String(displayMinute) +  ":" + String(displaySecond));
+  }
   // Serial.println(second);
   // ONLY DISPLAY IF IT'S MORE THAN 0
 }
@@ -93,13 +98,14 @@ void setup() {
   digitalWrite(ledPin, LOW); // Turn off LED initially
   myStepper.setSpeed(60); // Set the speed of the stepper motor
   
-  displayTime();
+  displayTime(second);
   Serial.begin(9600);
 }
 
 void loop() {
   // Display on LCD
-  displayTime();
+  if (displayMode == 0) {displayTime(second);}
+  else {displayTime(timerSecond); second = timerSecond;}
   // Serial.println(millis());
   Serial.println(millis() - buttonMillis);
   // Check hour button
@@ -131,16 +137,11 @@ void loop() {
       allowButtonPress = true;
     }
     if (allowButtonPress) {
-      hours = initialHours;
-      minutes = initialMinutes;
-      seconds = initialSeconds;
-
-      // CONFIGURE LATER
-      // motorRan = false; // Reset the motor run flag
-      // digitalWrite(ledPin, LOW); // Turn off LED
-      // blinkingLED = false; // Disable blinking
-      // // Start button pressed for the first time
-      // startPressed = true;
+      if (displayMode == 0) {
+        displayMode = 1;
+      } else {
+        displayMode = 0;
+      }
     }
   }
 
@@ -167,10 +168,6 @@ void loop() {
   // Check if the motor has run
   if (motorRan) {
     // Reset countdown timer to initial time
-    hours = initialHours;
-    minutes = initialMinutes;
-    seconds = initialSeconds;
-    displayTime();
     motorRan = false; // Reset motor run flag
   }
   previousMillis = millis();
