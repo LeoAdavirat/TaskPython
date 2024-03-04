@@ -75,13 +75,13 @@ void runStepperMotor() {
 void displayTime(int second) {
   if (second >= 0) {
     lcd.clear();
-  lcd.setCursor(0,0);
-  int tempSecond = second/1000;
-  int displayHour = tempSecond / 3600;
-  int displayMinute = (tempSecond - displayHour*60)/60;
-  int displaySecond = tempSecond - displayHour * 3600 - displayMinute * 60;
-  lcd.print("Time: " + String(displayHour) + ":" + String(displayMinute) +  ":" + String(displaySecond));
-  Serial.println("Time: " + String(displayHour) + ":" + String(displayMinute) +  ":" + String(displaySecond));
+    lcd.setCursor(0,0);
+    int tempSecond = second/1000;
+    int displayHour = tempSecond / 3600;
+    int displayMinute = (tempSecond - displayHour*60)/60;
+    int displaySecond = tempSecond - displayHour * 3600 - displayMinute * 60;
+    lcd.print("Time: " + String(displayHour) + ":" + String(displayMinute) +  ":" + String(displaySecond));
+    Serial.println("Time: " + String(displayHour) + ":" + String(displayMinute) +  ":" + String(displaySecond));
   }
   // Serial.println(second);
   // ONLY DISPLAY IF IT'S MORE THAN 0
